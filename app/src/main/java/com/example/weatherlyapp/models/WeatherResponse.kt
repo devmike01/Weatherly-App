@@ -19,7 +19,7 @@ class Coord {
     var lat = 0.0
 }
 
-class CityResponse {
+class WeatherResponse {
     @SerializedName("coord")
     @Expose
     var coord: Coord? = null

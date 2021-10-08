@@ -1,4 +1,4 @@
-package com.example.weatherlyapp.details
+package com.example.weatherlyapp.features.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.weatherlyapp.R
 import com.example.weatherlyapp.databinding.FragmentSecondBinding
+import com.example.weatherlyapp.features.MainActivityViewModel
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+
 class WeatherDetailsFragment : Fragment() {
+
 
     private var _binding: FragmentSecondBinding? = null
 
@@ -23,7 +27,7 @@ class WeatherDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
@@ -34,7 +38,7 @@ class WeatherDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_WeatherDetailsFragment_to_WeatherMainFragment)
         }
     }
 
