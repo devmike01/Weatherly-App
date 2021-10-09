@@ -57,7 +57,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         }
     }
 
-    fun mutate(): LiveData<T>{
+    fun toLiveData(): LiveData<T>{
         return this
     }
 

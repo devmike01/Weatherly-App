@@ -1,27 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:id="@+id/rl_bg"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/cairo_image"
     android:layout_height="match_parent"
-    tools:context=".features.details.WeatherDetailsFragment">
+    tools:context=".features.details.WeatherDetailsFragment"
+    android:focusable="true">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/image_tint" />
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_page_padding"
+        app:popupTheme="@style/Theme.WeatherlyApp.PopupOverlay"
+        app:subtitle="@null"
+        app:title="@null" />
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/weather_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:text="Snow fall" />
 
-    <Button
-        android:id="@+id/button_second"
+    <TextView
+        android:id="@+id/city_state_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/weather_tv"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        tools:text="Lagos, Nigeria" />
+
+    <TextView
+        android:layout_below="@+id/city_state_tv"
+        android:id="@+id/temp_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        tools:text="12 C" />
+
+    <TextView
+        android:id="@+id/min_max_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temp_tv"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        tools:text="30min max 11" />
+
+    <LinearLayout
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/other_details_ll"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_section_bg"
+        android:padding="20dp">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2">
+
+            <ImageView
+                tools:src="@drawable/ic_launcher_background"
+                android:id="@+id/weather_ic_iv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical|center_horizontal" />
+
+            <TextView
+                android:layout_marginTop="@dimen/icon_text_margin"
+                android:text="Hello world"
+                android:textStyle="bold"
+                android:id="@+id/description_tv"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base"
+                android:textSize="@dimen/bottom_section_title_default" />
+
+            <TextView
+                android:id="@+id/base_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                tools:text="1.5 hours" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pressure"
+                android:textSize="@dimen/bottom_section_title_default" />
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:textSize="@dimen/text_large"
+                android:id="@+id/pressure_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:text="1.5 hours" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/humidity"
+                android:textSize="@dimen/bottom_section_title_default" />
+
+            <TextView
+                android:textSize="@dimen/text_large"
+                android:id="@+id/humidity_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:text="1.5 hours" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

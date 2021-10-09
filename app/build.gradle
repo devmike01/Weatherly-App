@@ -38,16 +38,12 @@ android {
 }
 
 dependencies {
-    def room_version = "2.3.0"
     def glide_version = "4.12.0"
     def retrofit_version = "2.9.0"
 
     //Glide for loading images
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
-
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
 
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
@@ -70,4 +66,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
 }

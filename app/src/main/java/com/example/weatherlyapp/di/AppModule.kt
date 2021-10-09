@@ -1,5 +1,6 @@
 package com.example.weatherlyapp.di
 
+import com.example.weatherlyapp.repository.API
 import com.example.weatherlyapp.repository.WeatherRepository
 import com.example.weatherlyapp.repository.WeatherRepositoryImpl
 import com.example.weatherlyapp.repository.WeatherService
@@ -26,7 +27,7 @@ object AppModule {
     fun provideWeatherService(@OtherInterceptorOkHttpClient okHttpClient: OkHttpClient,
                               @ErrorInterceptorOkHttpClient errorOkHttpClient: OkHttpClient): WeatherService =
         Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org")
+            .baseUrl(API.BASE_URL)
             //.client(errorOkHttpClient)
             .client(okHttpClient)
             //.addCallAdapterFactory()

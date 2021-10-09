@@ -13,6 +13,7 @@ import com.example.weatherlyapp.adapters.WeatherAdapter
 import com.example.weatherlyapp.databinding.FragmentFirstBinding
 import com.example.weatherlyapp.features.MainActivity
 import com.example.weatherlyapp.features.MainActivityViewModel
+import com.example.weatherlyapp.features.details.WeatherDetailsFragment
 import com.example.weatherlyapp.models.CityGroupResponse
 import com.example.weatherlyapp.utils.*
 
@@ -22,7 +23,7 @@ import com.example.weatherlyapp.utils.*
 
 class WeatherMainFragment : Fragment() {
 
-    var mainActivityViewModel: MainActivityViewModel? = null
+    private var mainActivityViewModel: MainActivityViewModel? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -50,6 +51,19 @@ class WeatherMainFragment : Fragment() {
         mainActivityViewModel?.executeGetCities()
 
         val citiesAdapter = WeatherAdapter()
+
+        citiesAdapter.setOnClickCityListener(object : WeatherAdapter.OnClickCityListener{
+            override fun onClickCity(cityName: String) {
+
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
+                    .add(R.id.base_cl, WeatherDetailsFragment.newInstance(cityName))
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+        })
 
         mainActivityViewModel?.cityList?.observe(requireActivity()){
             it?.run {

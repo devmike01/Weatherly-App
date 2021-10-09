@@ -71,6 +71,10 @@ class WeatherResponse {
     @SerializedName("cod")
     @Expose
     var cod = 0
+
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
 }
 
 

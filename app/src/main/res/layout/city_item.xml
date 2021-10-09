@@ -13,12 +13,24 @@
         android:id="@+id/rl_bg"
         android:layout_width="match_parent"
         tools:background="@drawable/ic_launcher_background"
-        android:layout_height="120dp">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_marginTop="@dimen/default_page_padding"
+            android:id="@+id/weather_ic_im"
+            android:layout_marginStart="@dimen/default_page_padding"
+            tools:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_width="20dp"
+            android:layout_marginEnd="3dp"
+            android:layout_height="20dp"/>
 
     <TextView
+        android:layout_toEndOf="@+id/weather_ic_im"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:padding="@dimen/default_page_padding"
+        android:paddingTop="@dimen/default_page_padding"
+        android:paddingBottom="@dimen/default_page_padding"
+        android:paddingEnd="@dimen/default_page_padding"
         android:textAppearance="?android:textAppearanceSmall"
         tools:text="Sunset"
         android:id="@+id/weather_tv"
@@ -34,7 +46,7 @@
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             tools:text="8" />
 

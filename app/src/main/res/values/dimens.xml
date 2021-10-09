@@ -2,4 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="default_page_margin">20dp</dimen>
     <dimen name="default_page_padding">15dp</dimen>
+    <dimen name="bottom_section_title_default">15sp</dimen>
+    <dimen name="text_large">17sp</dimen>
+    <dimen name="icon_text_margin">10sp</dimen>
 </resources>
