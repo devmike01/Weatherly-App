@@ -3,6 +3,7 @@ package com.example.weatherlyapp.repository
 import com.example.weatherlyapp.models.CityGroupResponse
 import com.example.weatherlyapp.models.WeatherResponse
 import com.example.weatherlyapp.repository.API.CITY_IDS
+import com.example.weatherlyapp.utils.ResponseWrapper
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

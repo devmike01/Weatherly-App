@@ -34,7 +34,9 @@ open class MainActivityViewModel @Inject constructor(val repository: WeatherRepo
             _cityList.value = Resource.failed(exception.message ?: "Unknown error has occurred")
         }) {
             val cityGroupResponse = repository.getCities()
-            _cityList.value = Resource.success(cityGroupResponse)
+            cityGroupResponse?.apply {
+                _cityList.value = Resource.success(this)
+            }
         }
     }
 
@@ -45,7 +47,9 @@ open class MainActivityViewModel @Inject constructor(val repository: WeatherRepo
         }){
             //Get details
             val weatherDetails = repository.getCityWeatherByName(cityName)
-            _cityWeatherDetails.value = Resource.success(weatherDetails)
+            weatherDetails?.run {
+                _cityWeatherDetails.value = Resource.success(this)
+            }
         }
     }
 

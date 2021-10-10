@@ -1,11 +1,8 @@
 package com.example.weatherlyapp.di
 
 import com.example.weatherlyapp.repository.API
-import com.example.weatherlyapp.repository.WeatherRepository
-import com.example.weatherlyapp.repository.WeatherRepositoryImpl
 import com.example.weatherlyapp.repository.WeatherService
-import com.example.weatherlyapp.repository.services.ServerErrorInterceptor
-import com.example.weatherlyapp.repository.services.WebServiceAppIdInterceptor
+import com.example.weatherlyapp.repository.services.ServerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,9 +25,8 @@ object AppModule {
                               @ErrorInterceptorOkHttpClient errorOkHttpClient: OkHttpClient): WeatherService =
         Retrofit.Builder()
             .baseUrl(API.BASE_URL)
-            //.client(errorOkHttpClient)
-            .client(okHttpClient)
-            //.addCallAdapterFactory()
+            .client(errorOkHttpClient)
+            //.client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherService::class.java)
@@ -51,9 +47,10 @@ object AppModule {
 
     @Provides
     @ErrorInterceptorOkHttpClient
-    fun provideServerErrorInterceptor(serverErrorInterceptor: ServerErrorInterceptor): OkHttpClient{
+    fun provideServerErrorInterceptor(serverInterceptor: ServerInterceptor): OkHttpClient{
+
         return OkHttpClient.Builder()
-            .addNetworkInterceptor(serverErrorInterceptor)
+            .addInterceptor(serverInterceptor)
             .build()
     }
 

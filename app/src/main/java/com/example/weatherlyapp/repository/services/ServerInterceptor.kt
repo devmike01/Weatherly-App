@@ -13,18 +13,20 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class ServerErrorInterceptor @Inject constructor() : Interceptor {
+class ServerInterceptor @Inject constructor() : Interceptor {
 
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
-        val request = chain.request()
+        val _request = chain.request()
+        val url: HttpUrl =
+            _request.url.newBuilder().addQueryParameter("appid", "6e76055f1d172fe00a7aa9edd1f0ebf5").build()
+        val request = _request.newBuilder().url(url).build()
+
         try {
             val response = chain.proceed(request)
 
             val bodyString = response.body!!.string()
-
-            Log.d("intercept", "bodyString -> $bodyString")
 
             return response.newBuilder()
                 .body(bodyString.toResponseBody(response.body?.contentType()))
