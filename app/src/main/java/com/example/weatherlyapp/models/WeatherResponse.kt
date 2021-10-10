@@ -120,11 +120,11 @@ class Sys {
 
     @SerializedName("sunrise")
     @Expose
-    var sunrise = 0
+    var sunrise = 0L
 
     @SerializedName("sunset")
     @Expose
-    var sunset = 0
+    var sunset = 0L
 }
 
 class Weather {

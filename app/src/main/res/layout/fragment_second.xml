@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:layout_width="match_parent"
+    android:clickable="true"
+    android:id="@+id/swipe_rl"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/cairo_image"
+    android:layout_height="match_parent"
+    tools:context=".features.details.WeatherDetailsFragment"
+    android:focusable="true">
+
+<RelativeLayout
+    android:layout_width="match_parent"
     android:clickable="true"
     android:id="@+id/rl_bg"
     android:fitsSystemWindows="true"
@@ -10,6 +21,7 @@
     android:layout_height="match_parent"
     tools:context=".features.details.WeatherDetailsFragment"
     android:focusable="true">
+
 
     <View
         android:layout_width="match_parent"
@@ -69,105 +81,106 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         tools:text="30min max 11" />
-
-    <LinearLayout
-        tools:visibility="visible"
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="20dp"
         android:visibility="gone"
-        android:id="@+id/other_details_ll"
-        android:layout_width="match_parent"
-        android:layout_height="210dp"
+        tools:visibility="visible"
+        android:layout_margin="@dimen/default_page_margin"
+        android:id="@+id/other_details_cv"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_section_bg"
-        android:padding="20dp">
-
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2">
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:padding="20dp"
+            android:baselineAligned="false">
 
-            <ImageView
-                tools:src="@drawable/ic_launcher_background"
-                android:id="@+id/weather_ic_iv"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical|center_horizontal" />
 
-            <TextView
-                android:layout_marginTop="@dimen/icon_text_margin"
-                android:text="Hello world"
-                android:textStyle="bold"
-                android:id="@+id/description_tv"
-                android:layout_gravity="center_horizontal"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/weather_ic_iv"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    tools:src="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/icon_text_margin"
+                    tools:text="Hello world"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base"
+                    android:textSize="@dimen/bottom_section_title_default" />
+
+                <TextView
+                    android:id="@+id/base_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    tools:text="1.5 hours" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pressure"
+                    android:textSize="@dimen/bottom_section_title_default" />
+
+                <TextView
+                    android:id="@+id/pressure_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    tools:text="1.5 hours" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/humidity"
+                    android:textSize="@dimen/bottom_section_title_default" />
+
+                <TextView
+                    android:id="@+id/humidity_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    tools:text="1.5 hours" />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="30dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/base"
-                android:textSize="@dimen/bottom_section_title_default" />
-
-            <TextView
-                android:id="@+id/base_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                tools:text="1.5 hours" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pressure"
-                android:textSize="@dimen/bottom_section_title_default" />
-
-            <TextView
-                android:layout_marginBottom="10dp"
-                android:textSize="@dimen/text_large"
-                android:id="@+id/pressure_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                tools:text="1.5 hours" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/humidity"
-                android:textSize="@dimen/bottom_section_title_default" />
-
-            <TextView
-                android:textSize="@dimen/text_large"
-                android:id="@+id/humidity_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                tools:text="1.5 hours" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

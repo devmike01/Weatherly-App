@@ -13,4 +13,5 @@
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
     <string name="base">Base</string>
+    <string name="welcome_subtitle">Weather forecast at your fingerprint</string>
 </resources>

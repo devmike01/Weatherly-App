@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherlyapp.R
 import com.example.weatherlyapp.adapters.WeatherAdapter
@@ -14,8 +13,8 @@ import com.example.weatherlyapp.databinding.FragmentFirstBinding
 import com.example.weatherlyapp.features.MainActivity
 import com.example.weatherlyapp.features.MainActivityViewModel
 import com.example.weatherlyapp.features.details.WeatherDetailsFragment
-import com.example.weatherlyapp.models.CityGroupResponse
 import com.example.weatherlyapp.utils.*
+import com.example.weatherlyapp.utils.ResourceStates.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -58,26 +57,30 @@ class WeatherMainFragment : Fragment() {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
-                    .add(R.id.base_cl, WeatherDetailsFragment.newInstance(cityName))
+                    .add(R.id.base_rl, WeatherDetailsFragment.newInstance(cityName))
                     .addToBackStack(null)
                     .commit()
             }
 
         })
 
+        _binding?.swipeRl?.setOnRefreshListener {
+            mainActivityViewModel?.executeGetCities()
+        }
+
         mainActivityViewModel?.cityList?.observe(requireActivity()){
             it?.run {
-                when(this){
-                    is Success ->{
-                        _binding?.progressBar?.hide()
-                        citiesAdapter.submitList(this.data.getList())
+                when(this.resourceStates){
+                    ResourceStates.SUCCESS ->{
+                        _binding?.swipeRl?.isRefreshing = false
+                        citiesAdapter.submitList(this.data?.getList())
                     }
-                    is Loading ->{
-                        _binding?.progressBar?.show()
+                    LOADING ->{
+                        _binding?.swipeRl?.isRefreshing = true
                     }
-                    is Failed ->{
-                        showToast(this.message)
-                        _binding?.progressBar?.hide()
+                    FAILED ->{
+                        showToast(this.error!!)
+                        _binding?.swipeRl?.isRefreshing = false
 
                     }
                 }

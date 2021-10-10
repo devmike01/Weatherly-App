@@ -2,12 +2,9 @@ package com.example.weatherlyapp.features.details
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -51,8 +48,7 @@ class WeatherDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
@@ -62,6 +58,11 @@ class WeatherDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getString(ARG_CITY_NAME)?.apply {
             mainActivityViewModel.executeFetchWeatherByCityName(this);
+
+
+            _binding?.swipeRl?.setOnRefreshListener {
+                mainActivityViewModel.executeFetchWeatherByCityName(this)
+            }
         }
 
 
@@ -75,10 +76,11 @@ class WeatherDetailsFragment : Fragment() {
         }
 
         mainActivityViewModel.cityWeatherDetails.observe(viewLifecycleOwner){
-            when(it){
-                is Success ->{
-                    _binding?.progressBar?.hide()
-                    it.data.run {
+            when(it.resourceStates){
+                ResourceStates.SUCCESS ->{
+
+                    _binding?.swipeRl?.isRefreshing =false
+                    it.data?.run {
                         _binding?.weatherTv?.text = this.weather?.get(0)?.main
                         _binding?.cityStateTv?.text = "${ this.name},${ this.sys?.country}"
                         val temperature =  this.main?.temp?.toCelsiusDouble()
@@ -94,13 +96,13 @@ class WeatherDetailsFragment : Fragment() {
                         animateDetailsViews()
                     }
                 }
-                is Failed ->{
-                    Log.d("getCityWeatherByName", "hello ${it.message}")
-                    showToast(it.message)
-                    _binding?.progressBar?.hide()
+                ResourceStates.FAILED ->{
+
+                    _binding?.swipeRl?.isRefreshing =false
+                    showToast(it.error!!)
                 }
-                is Loading ->{
-                    _binding?.progressBar?.show()
+                ResourceStates.LOADING ->{
+                    _binding?.swipeRl?.isRefreshing =true
                 }
             }
         }
@@ -119,10 +121,10 @@ class WeatherDetailsFragment : Fragment() {
     }
 
     private fun animateDetailsViews(){
-        ObjectAnimator.ofFloat(_binding?.otherDetailsLl, "translationY",
+        ObjectAnimator.ofFloat(_binding?.otherDetailsCv, "translationY",
             200f, 0f).apply {
-            duration = 300
-            _binding?.otherDetailsLl?.visibility = View.VISIBLE
+            duration = 100
+            _binding?.otherDetailsCv?.visibility = View.VISIBLE
             start()
         }
 
