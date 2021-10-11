@@ -90,6 +90,8 @@ class WeatherDetailsFragment : Fragment() {
                         _binding?.weatherTv?.text = this.weather?.get(0)?.main
                         _binding?.cityStateTv?.text = "${ this.name},${ this.sys?.country}"
                         val temperature =  this.main?.temp
+                        loadImages()[this.id]?.run {  _binding?.rlBg?.setCityImage(this ) }
+
                         "min ${this.main?.tempMin ?: 0}, ${this.main?.tempMax ?: 0} max".also { _binding?.minMaxTv?.text = it }
                         setTemperature(temperature ?: 0.0, _binding?.tempTv )
                         viewPager(this)

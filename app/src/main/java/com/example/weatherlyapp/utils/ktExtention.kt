@@ -45,7 +45,7 @@ fun Any.toCelsius(): String{
     return "0°C"
 }
 
-fun WeatherAdapter.loadImages(): Map<Int, Int>{
+fun loadImages(): Map<Int, Int>{
     return mapOf(
         2332453 to R.drawable.lagos,
         192950 to R.drawable.kenya_lesotho,
