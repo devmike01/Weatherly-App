@@ -143,7 +143,7 @@ class WeatherDetailsFragment : Fragment() {
             findViewById<TextView>(R.id.visibility_tv)?.text = weatherResponse.visibility.toString()
             findViewById<TextView>(R.id.lat_tv)?.text = "${weatherResponse.coord?.lat}"
             findViewById<TextView>(R.id.lng_tv)?.text = "${weatherResponse.coord?.lon}"
-            findViewById<TextView>(R.id.wind_speed_tv)?.text = "${weatherResponse.wind?.deg}°"
+            findViewById<TextView>(R.id.wind_degree_tv)?.text = "${weatherResponse.wind?.deg}°"
         }
 
         viewList.add(mainDetailView)
