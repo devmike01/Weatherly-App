@@ -3,6 +3,7 @@ package com.example.weatherlyapp.repository.services
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.example.weatherlyapp.BuildConfig
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -21,7 +22,7 @@ class ServerInterceptor @Inject constructor() : Interceptor {
         val _request = chain.request()
         val url: HttpUrl =
             _request.url.newBuilder()
-                .addQueryParameter("appid", "6e76055f1d172fe00a7aa9edd1f0ebf5")
+                .addQueryParameter("appid", BuildConfig.API_ID)
                 .addQueryParameter("units", "metric")
                 .build()
         val request = _request.newBuilder().url(url).build()
