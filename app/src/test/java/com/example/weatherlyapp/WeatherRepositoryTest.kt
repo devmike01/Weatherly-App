@@ -33,7 +33,7 @@ class WeatherRepositoryTest {
         assertNotNull(webservice)
         val webserviceCity = webservice.getAllCities()
         `when`(repository.getCities()).thenReturn(webserviceCity)
-        assertEquals(repository.getCities().getList()?.get(0)?.name, MockWebService.TEST_CITY_NAME)
+        assertEquals(repository.getCities().getList().get(0).name, MockWebService.TEST_CITY_NAME)
     }
 
     @ExperimentalCoroutinesApi

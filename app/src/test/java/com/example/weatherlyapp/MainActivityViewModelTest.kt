@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.weatherlyapp.features.MainActivityViewModel
 import com.example.weatherlyapp.repository.WeatherRepositoryImpl
-import com.example.weatherlyapp.repository.WeatherService
+import com.example.weatherlyapp.repository.services.WeatherService
 import com.example.weatherlyapp.utils.*
 
 import kotlinx.coroutines.*

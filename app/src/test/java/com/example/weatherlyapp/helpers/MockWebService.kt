@@ -2,7 +2,7 @@ package com.example.weatherlyapp.helpers
 
 import com.example.weatherlyapp.repository.models.CityGroupResponse
 import com.example.weatherlyapp.repository.models.WeatherResponse
-import com.example.weatherlyapp.repository.WeatherService
+import com.example.weatherlyapp.repository.services.WeatherService
 import kotlinx.coroutines.delay
 
 open class MockWebService : WeatherService {
@@ -11,7 +11,7 @@ open class MockWebService : WeatherService {
         const val TEST_CITY_NAME ="Cairo"
     }
 
-    override suspend fun getAllCities(groupIds: String, units: String): CityGroupResponse {
+    override suspend fun getAllCities(groupIds: String): CityGroupResponse {
         val cityGroupResponse = CityGroupResponse()
         cityGroupResponse.setCnt(2)
         val weatherResponse = WeatherResponse()
