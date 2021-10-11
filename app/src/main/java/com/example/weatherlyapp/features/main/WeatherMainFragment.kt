@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherlyapp.R
-import com.example.weatherlyapp.adapters.WeatherAdapter
 import com.example.weatherlyapp.databinding.FragmentFirstBinding
 import com.example.weatherlyapp.features.MainActivity
 import com.example.weatherlyapp.features.MainActivityViewModel
@@ -22,12 +22,7 @@ import com.example.weatherlyapp.utils.ResourceStates.*
 
 class WeatherMainFragment : Fragment() {
 
-    private var mainActivityViewModel: MainActivityViewModel? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mainActivityViewModel = (context as MainActivity).mainActivityViewModel
-    }
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
     private var _binding: FragmentFirstBinding? = null
 
@@ -73,7 +68,7 @@ class WeatherMainFragment : Fragment() {
                 when(this.resourceStates){
                     ResourceStates.SUCCESS ->{
                         _binding?.swipeRl?.isRefreshing = false
-                        citiesAdapter.submitList(this.data?.getList())
+                        citiesAdapter.submitList(this.data)
                     }
                     LOADING ->{
                         _binding?.swipeRl?.isRefreshing = true

@@ -1,4 +1,4 @@
-package com.example.weatherlyapp.models
+package com.example.weatherlyapp.repository.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -18,6 +18,7 @@ class Coord {
     @Expose
     var lat = 0.0
 }
+
 
 class WeatherResponse {
     @SerializedName("coord")

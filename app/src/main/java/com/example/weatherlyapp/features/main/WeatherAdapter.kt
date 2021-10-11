@@ -1,5 +1,6 @@
-package com.example.weatherlyapp.adapters
+package com.example.weatherlyapp.features.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.weatherlyapp.R
-import com.example.weatherlyapp.models.WeatherResponse
-import com.example.weatherlyapp.repository.API
+import com.example.weatherlyapp.repository.models.WeatherResponse
 import com.example.weatherlyapp.utils.iconUrl
-import com.example.weatherlyapp.utils.toCelsius
+import com.example.weatherlyapp.utils.loadImages
+import com.example.weatherlyapp.utils.setCityImage
 
 class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherAdapterVH>(diffUtil) {
+
+    val cityImages = loadImages()
 
     interface OnClickCityListener{
         fun onClickCity(cityName: String)
@@ -45,7 +48,7 @@ class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherAdapte
 
     inner class WeatherAdapterVH(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(weatherResponse: WeatherResponse){
+        fun bind(weatherResponse: WeatherResponse, cityImages: Map<Int, Int>){
             itemView.apply{
                 val weatherTv : TextView = findViewById(R.id.weather_tv)
                 val temperatureTv : TextView = findViewById(R.id.temp_tv)
@@ -53,7 +56,15 @@ class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherAdapte
                 val weatherIcon : ImageView = findViewById(R.id.weather_ic_im)
                 val cityImageRl : RelativeLayout = findViewById(R.id.rl_bg)
 
-                cityImageRl.setBackgroundResource(R.drawable.cairo_image)
+                if (cityImages[weatherResponse.id] != null) {
+                    cityImageRl.setCityImage(cityImages[weatherResponse.id]!!)
+                }else{
+                    Glide.with(context).clear(cityImageRl);
+                    // remove the placeholder (optional); read comments below
+                    cityImageRl.background = (null);
+                    Log.d("WeatherAdapterVH", "WHCH ${weatherResponse.id}")
+                }
+
                 weatherTv.text = weatherResponse.name
                 cityTv.text = weatherResponse.name
                 temperatureTv.text = context.let { resources.getString(R.string.degree_celsius, weatherResponse.main?.temp.toString()) }
@@ -75,6 +86,6 @@ class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherAdapte
     }
 
     override fun onBindViewHolder(holder: WeatherAdapterVH, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), cityImages = cityImages)
     }
 }

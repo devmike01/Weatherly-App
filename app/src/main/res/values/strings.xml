@@ -14,4 +14,5 @@
     <string name="humidity">Humidity</string>
     <string name="base">Base</string>
     <string name="welcome_subtitle">Weather forecast at your fingerprint</string>
+    <string name="title_feel_like">Feel Like</string>
 </resources>

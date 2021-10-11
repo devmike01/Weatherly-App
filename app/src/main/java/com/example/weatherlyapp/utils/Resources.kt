@@ -1,11 +1,5 @@
 package com.example.weatherlyapp.utils
 
- interface Resources<T>
-data class Success<T>(val data: T): Resources<T>
-data class Failed<T>(val message: String, val data: T? = null): Resources<T>
-sealed class Loading<T>(data: T? = null) : Resources<T>
-
-
 enum class ResourceStates{
  LOADING, SUCCESS, FAILED
 }

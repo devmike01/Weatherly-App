@@ -20,7 +20,10 @@ class ServerInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val _request = chain.request()
         val url: HttpUrl =
-            _request.url.newBuilder().addQueryParameter("appid", "6e76055f1d172fe00a7aa9edd1f0ebf5").build()
+            _request.url.newBuilder()
+                .addQueryParameter("appid", "6e76055f1d172fe00a7aa9edd1f0ebf5")
+                .addQueryParameter("units", "metric")
+                .build()
         val request = _request.newBuilder().url(url).build()
 
         try {

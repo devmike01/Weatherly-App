@@ -1,11 +1,8 @@
-package com.example.weatherlyapp.models
+package com.example.weatherlyapp.repository.models
 
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
-
-
-
 
 class CityGroupResponse {
 
@@ -15,7 +12,7 @@ class CityGroupResponse {
 
     @SerializedName("list")
     @Expose
-    private var list: List<WeatherResponse>? = null
+    private var list: List<WeatherResponse> = emptyList()
 
     fun getCnt(): Int {
         return cnt
@@ -25,11 +22,11 @@ class CityGroupResponse {
         this.cnt = cnt
     }
 
-    fun getList(): List<WeatherResponse?>? {
+    fun getList(): List<WeatherResponse> {
         return list
     }
 
-    fun setList(list: List<WeatherResponse>?) {
+    fun setList(list: List<WeatherResponse>) {
         this.list = list
     }
 }

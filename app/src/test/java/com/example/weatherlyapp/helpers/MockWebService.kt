@@ -1,7 +1,7 @@
 package com.example.weatherlyapp.helpers
 
-import com.example.weatherlyapp.models.CityGroupResponse
-import com.example.weatherlyapp.models.WeatherResponse
+import com.example.weatherlyapp.repository.models.CityGroupResponse
+import com.example.weatherlyapp.repository.models.WeatherResponse
 import com.example.weatherlyapp.repository.WeatherService
 import kotlinx.coroutines.delay
 

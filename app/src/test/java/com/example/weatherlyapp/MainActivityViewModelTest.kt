@@ -42,8 +42,6 @@ class MainActivityViewModelTest {
     @ExperimentalCoroutinesApi
     @Before
     fun init(){
-        val testDispatcher = TestCoroutineDispatcher()
-        val testScope = TestCoroutineScope(testDispatcher)
         mainThreadSurrogate = newSingleThreadContext("UI thread")
         mainActivityViewModel = MainActivityViewModel(repository)
         Dispatchers.setMain(mainThreadSurrogate)
