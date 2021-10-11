@@ -15,6 +15,10 @@
         tools:background="@drawable/ic_launcher_background"
         android:layout_height="match_parent">
 
+        <View
+            android:background="@color/image_tint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <ImageView
             android:layout_marginTop="@dimen/default_page_padding"
             android:id="@+id/weather_ic_im"
