@@ -1,5 +1,6 @@
 # Weatherly-App
 
+### Note:
 Westham is East Sussex.<br/>
 Amazon as Amazonas.
 <br/><br/>
