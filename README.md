@@ -1,4 +1,7 @@
 # Weatherly-App
+### Screenshots:
+![plot](./device-2021-10-14-133652.png)
+![plot](./device-2021-10-14-133652.png)
 
 ### Note:
 Westham is East Sussex.<br/>
