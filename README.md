@@ -1,7 +1,10 @@
 # Weatherly-App
 ### Screenshots:
-![plot](./device-2021-10-14-133652.png)
-![plot](./device-2021-10-14-133652.png)
+
+<p align="center">
+  <img src="./device-2021-10-14-133652.png" title="Android MVVM" align="left"/>
+  <img src="./device-2021-10-14-133843.png" width="350" alt="Android MVVM">
+</p>
 
 ### Note:
 Westham is East Sussex.<br/>
