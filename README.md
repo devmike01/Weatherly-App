@@ -5,22 +5,22 @@ Amazon as Amazonas.
 <br/><br/>
 A two-page mobile weather application detailing the weather information for cities below:
 
-> Kenya
-> Lesotho
-> Cairo
-> Jakarta
-> Lagos
-> Ankara
-> Abuja 
-> Kano
-> New York
-> Peru
-> Texas 
-> Winnipeg
-> Amazon
-> Bagdad
-> Belarus
-> Westham
+- Kenya
+- Lesotho
+- Cairo
+- Jakarta
+- Lagos
+- Ankara
+- Abuja 
+- Kano
+- New York
+- Peru
+- Texas 
+- Winnipeg
+- Amazon
+- Bagdad
+- Belarus
+- Westham
 
 ### Main Architecture:
 [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
