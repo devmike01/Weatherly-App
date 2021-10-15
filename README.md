@@ -2,8 +2,8 @@
 ### Screenshots:
 
 <p align="center">
-  <img src="./device-2021-10-14-133652.png" title="Android MVVM"  width="350" align="left"/>
-  <img src="./device-2021-10-14-133843.png" width="350" alt="Android MVVM">
+  <img src="./device-2021-10-14-133652.png" title="Android MVVM"  width="300" align="left"/>
+  <img src="./device-2021-10-14-133843.png" width="300" alt="Android MVVM">
 </p>
 
 ### Note:
